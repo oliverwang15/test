@@ -1,4 +1,17 @@
-## 本地git
+
+
+
+
+
+
+### **熟悉完下面git的基本操作可以直接下载[GitHub图形界面程序](https://desktop.github.com/)并安装使用**
+
+
+
+
+
+
+## Part 1：本地git
 
 - 第一步：下载[Git](https://git-scm.com/download/)并安装
 
@@ -76,7 +89,7 @@
   
 
 
-## github
+## Part 2：Github（个人）
 
 - 第一步：注册账号[GitHub官网](https://github.com)
 
@@ -92,13 +105,11 @@
 
   然后，点“New SSH Key”，填上任意Title，在Key文本框里粘贴id_rsa.pub文件的内容即可。
 
-- 第四步：用浏览器打开https://github.com/oliverwang15/test并复制这个链接
+- 第四步：用浏览器打开自己的仓库（[这里以我的为例](https://github.com/oliverwang15/test)）并复制这个链接:
 
   ![6NTsJg.png](https://s3.ax1x.com/2021/03/12/6NTsJg.png)
 
-- 第五步：
-
-  使用`Git clone`直接从远程仓库克隆下来
+- 第五步：使用`Git clone`直接从远程仓库克隆下来
 
   ```bash
   $ git clone https://github.com/oliverwang15/test.git
@@ -130,20 +141,78 @@
 
 ***
 
+
+## Part 3：GitHub（团队）
+
+* 第一步：创建团队账号（略）
+* 第二步：使用`Git clone`直接从远程仓库克隆下来
+
+  ```bash
+  $ git clone https://github.com/Quanti-Algorithm-based-on-Deep-Learning/test.git
+  ```
+
+----
+  或者
+
+- 第二步：将远程仓库和本地仓库关联起来：
+
+  ```bash
+  $ git remote add origin https://github.com/Quanti-Algorithm-based-on-Deep-Learning/test.git
+  ```
+  origin就在本地代表了该仓库的名称可以随意指定，但一般定为origin
+
+----
+- 第三步：把本地库的所有内容推送到远程库上
+    ```bash
+  $ git add filename
+  $ git commit -m "升级了一下版本"
+  $ git push origin master
+  ```
+
+## part 4：一些基本操作汇总
+* 创建仓库命令
+  ```bash
+  $ git init	初始化仓库
+  $ git clone	拷贝一份远程仓库，也就是下载一个项目。
+  ```
+* 提交与修改
+  ```bash
+  $ git add	添加文件到仓库
+  $ git status	查看仓库当前的状态，显示有变更的文件。
+  $ git diff	比较文件的不同，即暂存区和工作区的差异。
+  $ git commit	提交暂存区到本地仓库。
+  $ git reset	回退版本。
+  $ git rm	删除工作区文件。
+  $ git mv	移动或重命名工作区文件。
+  ```
+* 提交日志
+  ```bash
+  $ git log	查看历史提交记录
+  $ git blame <file>	以列表形式查看指定文件的历史修改记录
+  ```
+* 远程操作
+  ```bash
+  $ git remote	远程仓库操作
+  $ git fetch	从远程获取代码库
+  $ git pull	下载远程代码并合并
+  $ git push	上传远程代码并合并
+  ```
+
+
 ########################### 以下这部分以后可能用到 ################################
 
-#### 实现版本回退
+## part 5：实现版本回退
 
 现在修改hello.txt里的内容：
 
-```python
+``` python
 print("Hello World")
 print("老板是神经病")
 ```
 
 因为对工作很不满，下班前添加了第二行，“老板是神经病”,然后提交
 
-```bash
+``` bash
 $ git add hello.txt
 $ git commit -m "hello.txt里添加了一句话"
 ```
@@ -258,10 +327,9 @@ head指针
 $ git reflog
 ```
 结果：
-```
+   ```
 88d885c (HEAD -> master) HEAD@{0}: reset: moving to 88d885c21216cbedacb1692e08d51afa6d4e32a7
 ec4652d HEAD@{1}: reset: moving to HEAD^
 88d885c (HEAD -> master) HEAD@{2}: commit: 在hello.txt添加了一句话
 ec4652d HEAD@{3}: commit (initial): 添加了hello.txt
-```
-
+   ```
